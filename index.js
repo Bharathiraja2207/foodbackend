@@ -27,23 +27,24 @@ app.get("/", function (request, response) {
 
 
 // food item
-app.post("/fooditem",async function (request, response) {
+  app.post("/postall",async function (request, response) {
     const data=request.body;
     console.log(data);
+// db.moviesid.insertmany(data)
      const result= await client
         .db("buyfast")
-       .collection("fooditem")
+       .collection("allfood")
         .insertMany(data)
     response.send(result);
   });
 
-  app.get("/fooditem",async function (request, response) {
-    const fooditem= await client
+  app.get("/findallfood",async function (request, response) {
+    const fooditm= await client
     .db("buyfast")
- .collection("fooditem")
+    .collection("allfood")
     .find({})
     .toArray();
-      response.send(fooditem);
+        response.send(fooditm);
       });
 
 
